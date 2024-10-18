@@ -114,4 +114,12 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+  if config_env() in [:dev, :test] do
+    Dotenv.load!()
+    Dotenv.load!(".env.#{config_env()}")
+  end
+
+  config :example_api, ExampleApi.Guardian,
+    issuer: "example_api",
+    secret_key: System.get_env("GUARDIAN_SECRET_KEY")
 end

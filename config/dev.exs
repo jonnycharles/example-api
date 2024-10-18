@@ -1,5 +1,6 @@
 import Config
 
+
 # Configure your database
 config :example_api, ExampleApi.Repo,
   username: "postgres",
